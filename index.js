@@ -1,11 +1,14 @@
 require('dotenv').config();
 const express = require('express');
 const pool = require('./src/config/database');
+const authRoutes = require('./src/routes/auth.routes');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use('/api/auth', authRoutes);
+
 
 pool.connect()
     .then(() => {
